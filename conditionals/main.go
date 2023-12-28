@@ -12,6 +12,8 @@ import "fmt"
 
 // }
 
+// NOTE: There is no ternary in go, you will have to use basic if else.
+
 func main() {
 	fmt.Println("Learning Conditionals")
 	// >, >=, ==, <, <=, !=
@@ -23,6 +25,12 @@ func main() {
 		fmt.Println("Equals val")
 	} else {
 		fmt.Println("Not equals val")
+	}
+
+	if 0*0 > 0 {
+		fmt.Println("0 is greater than 0")
+	} else {
+		fmt.Println("0 is not greater than 0")
 	}
 
 	var number int
@@ -39,8 +47,10 @@ func main() {
 	num := 7
 	if val := num * 2; val > 10 {
 		fmt.Println("val is greater than 10")
+	} else if val < 0 {
+		fmt.Println("val is less than 0")
 	} else {
-		fmt.Println("val is less than 10")
+		fmt.Println("val is between 0 and 10")
 	}
 
 	operatingSystem := "Windows"
@@ -74,4 +84,29 @@ func main() {
 	default:
 		fmt.Println("default")
 	}
+
+	day := "Sunday"
+	switch day {
+	case "Sunday", "Saturday": // Or of matches
+		fmt.Println("It's weekend")
+	default:
+		fmt.Println("It's weekday")
+	}
+
+	// Type switch
+	// A type switch compares the types instead of values of the provided variable
+	inlineFn := func(passedValue interface{}) {
+		switch typeOfPassedValue := passedValue.(type) {
+		case bool:
+			fmt.Println("I'm a bool")
+		case int:
+			fmt.Println("I'm an int")
+		default:
+			fmt.Printf("Don't know type %T\n", typeOfPassedValue)
+		}
+	}
+	inlineFn(true)
+	inlineFn(1)
+	inlineFn("hey")
+
 }

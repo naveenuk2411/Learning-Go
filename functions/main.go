@@ -29,8 +29,8 @@ func add(num1, num2 int) int {
 // If the type of the last parameter in a function definition is prefixed by ellipsis ...,
 // then the function can accept any number of arguments for that parameter.
 
-// The variadic parameter must be the last parameter of the function.
-// The variadic parameter in itself is compiled to a slice, so we can pass a slice to it as well, and can interpret and
+// 1. The variadic parameter must be the last parameter of the function.
+// 2. The variadic parameter in itself is compiled to a slice, so we can pass a slice to it as well, and can interpret and
 // use it as slice within the function
 func printValues(num1, num2 int, nums ...int) {
 	slice := []int{num1, num2}
@@ -43,6 +43,14 @@ func sumAndMultiply(a, b, c int) (sum, mult int) {
 	sum, mult = a+b, a*b // Not sum, mult := a+b, a*b
 	sum -= c
 	mult -= c
+	return
+}
+
+func calculateSum(nums ...int) (sum int) {
+	sum = 0
+	for _, value := range nums {
+		sum += value
+	}
 	return
 }
 
@@ -65,10 +73,10 @@ func multiplyBy2P(val *int) int {
 	return *val
 }
 
-func modifySlice(slice []int) []int {
-	slice[0] = 24                  // This will modify the value in the original slice passed to it as argument
-	slice = append(slice, 2, 3, 4) // This will create a new slice and return this new slice
-	return slice
+func modifySlice(slice []int) ([]int, []int) {
+	slice[0] = 24                      // This will modify the value in the original slice passed to it as argument
+	newSlice := append(slice, 2, 3, 4) // This will create a new slice and return this new slice
+	return slice, newSlice
 }
 
 func main() {
@@ -96,5 +104,11 @@ func main() {
 	cur := 2
 	fmt.Println(multiplyBy2(cur), cur)
 	fmt.Println(multiplyBy2P(&cur), cur)
-	fmt.Println(modifySlice(slice), slice)
+
+	// You can always use the blank operator to omit the values you do not want to have stored in a variable.
+	slice, newSlice := modifySlice(slice)
+	fmt.Println(slice, newSlice)
+
+	overallSum := calculateSum(1, 2, 3, 4, 5)
+	fmt.Println(overallSum)
 }

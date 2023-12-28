@@ -29,8 +29,21 @@ func main() {
 
 	// Creating a empty slice
 	var emptySlice []int
+	// An uninitializes slice is nil
+	fmt.Println("Uninitialized slice", emptySlice, emptySlice == nil, len(emptySlice))
+
+	// Creating slice with make
+	makeSlice := make([]int, 5)
+	fmt.Println(makeSlice, len(makeSlice), cap(makeSlice))
+
+	// Creating clice with make, different cap and length
+	newMakeSlice := make([]int, 5, 10)
+	fmt.Println(newMakeSlice, len(newMakeSlice), cap(newMakeSlice))
+
 	// Self append to the same slice
 	emptySlice = append(emptySlice, 2, 3, 4)
+	fmt.Println(emptySlice)
+	emptySlice = append(emptySlice, newScoresArr...)
 	fmt.Println(emptySlice)
 
 	// Creating a new slice from exisiting slice
@@ -46,4 +59,26 @@ func main() {
 	// Merging two slices
 	mergedSlice := append(newSlice, emptySlice...)
 	fmt.Println(mergedSlice)
+
+	// Two dimensional array
+	var matrix [2][3]int
+
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 3; j++ {
+			matrix[i][j] = i + j
+		}
+	}
+
+	fmt.Println(matrix)
+
+	// Two dimensional slice
+	slicedMatrix := make([][]int, 3)
+	for i := 0; i < 3; i++ {
+		var lenInnerSlice int = i + 1
+		slicedMatrix[i] = make([]int, lenInnerSlice)
+		for j := 0; j < lenInnerSlice; j++ {
+			slicedMatrix[i][j] = i + j
+		}
+	}
+	fmt.Println(slicedMatrix)
 }

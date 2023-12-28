@@ -13,7 +13,7 @@ var CurrentLocation string
 // A function comment should be written directly before the function declaration. It should be a full sentence that starts with the
 // function name.
 // For example, an exported comment for the function Calculate should take the form Calculate ....
-// Forecast takes in the location of the city and the forecase condition and returns the weather forecast string.
+// Forecast takes in the location of the city and the forecast condition and returns the weather forecast string.
 func Forecast(city, condition string) string {
 	CurrentLocation, CurrentCondition = city, condition
 	return CurrentLocation + " - current weather condition: " + CurrentCondition

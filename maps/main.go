@@ -1,11 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Key value pair, with keys being unique
 // Creation of Map Syntax:
-// 1. myMap := map[key]value{} -> Example: myMap := map[string]int{}
-// 2. myMap := make(map[key]value) -> Example: myMap := make(map[string]int)
+// 1. myMap := map[keyType]valueType{} -> Example: myMap := map[string]int{}
+// 2. myMap := make(map[keyType]valueType) -> Example: myMap := make(map[string]int)
 func main() {
 	fmt.Println("Learning maps")
 
@@ -19,7 +21,7 @@ func main() {
 	fmt.Println(myNewMap)
 
 	// Retreive a key
-	fmt.Println(myMap["a"])
+	fmt.Println(myMap["a"], len(myMap))
 
 	// Update a key
 	myMap["a"] = 10
@@ -41,5 +43,16 @@ func main() {
 	fmt.Println(existsNew)
 
 	var newValue, newExist = myMap["a"]
-	fmt.Println(newValue, newExist)
+	fmt.Println(newValue, newExist, len(myMap))
+
+	// Clear all key value pairs of map -> Only available in go 1.21, will not run for now in this PC
+	fmt.Println(myNewMap, len(myNewMap))
+	// clear(myNewMap)
+	// fmt.Println(myNewMap)
+
+	// Alternate way to delete all keys in map
+	for key := range myNewMap {
+		delete(myNewMap, key)
+	}
+	fmt.Println(myNewMap, len(myNewMap))
 }

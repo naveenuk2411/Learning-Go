@@ -3,7 +3,6 @@ package main
 // fmt stands for format package
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
@@ -16,6 +15,10 @@ func main() {
 	// Variables using var
 	var name string = "Go lang"
 	fmt.Println(name)
+
+	var candidateName, candidateAge = "Naveen", 24
+	fmt.Println(candidateName, candidateAge)
+	fmt.Printf("%T %T\n", candidateName, candidateAge)
 
 	// This will throw an error if you do not use the variable
 	// var age int = 30
@@ -56,20 +59,13 @@ func main() {
 	// +, -, /, *, %
 	// a += 5, a++, a--
 
+	// Note: Go only allows postfix operations, not prefix operations. Like a++ -> correct, ++a -> wrong
+	// In Go, contrary to most C-based languages, the increment and decrement statements don't produce a value, they're statements and not expressions.
+
 	// Type conversions
 	var a float64 = 3.5
 	var b int = 30
 	// var c int = b * a  -> This will throw an error, automatic type conversion is not followed
 	var c int = b * int(a)
 	fmt.Println(c)
-
-	// Strings
-	const stringName string = "Go lang"
-	fmt.Println(stringName)
-	const concatString string = "Learning" + " " + "golang."
-	fmt.Println(concatString)
-	var newStringName string = strings.ReplaceAll(stringName, "Go", "Gone")
-	fmt.Println(newStringName)
-	newStringName = strings.TrimSpace(newStringName)
-	fmt.Println(newStringName)
 }
